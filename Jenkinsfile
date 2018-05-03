@@ -3,7 +3,7 @@ pipeline {
     label 'jdk8'
   }
   stages {
-    stage('Say Hello') {
+    stage('Say Hello ${params.Name}!') {
       steps {
         echo 'Hello ${params.Name}!'
         sh 'java -version'
@@ -15,5 +15,8 @@ pipeline {
   environment {
     MY_NAME = 'Ed'
     TEST_USER = credentials('test-user')
+  }
+  parameters {
+    string(name: 'Name', defaultValue: 'whoever you are', description: 'Who should I say hi to?')
   }
 }
